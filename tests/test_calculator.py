@@ -5,20 +5,28 @@ from model.calculator import Calculator
 
 class TestCalculator(unittest.TestCase):
 
-    def init(self,a ,b):
-        print("init")
-        self.calc = Calculator(a, b)
+    def setUp(self) :
+        print("setUp")
+        self.calc = Calculator()
 
-    def destroy(self):
-        print("destroy")
+    def tearDown(self):
+        print("tearDown")
         del self.calc
+
+    # def init(self,a ,b):
+    #     print("init")
+    #     self.calc = Calculator(a, b)
+    #
+    # def destroy(self):
+    #     print("destroy")
+    #     del self.calc
 
     # AAA
     def test_sum(self):
         # arrange
-        a = 10
-        b = 20
-        self.init(a, b)
+        self.calc.a = 10
+        self.calc.b = 20
+
         expected = 30
 
         # action
@@ -27,25 +35,25 @@ class TestCalculator(unittest.TestCase):
         # assert
         self.assertEqual(expected, actual)
         self.assertEqual(1, self.calc.count)
-        self.destroy()
+
 
     def test_sub(self):
-        a = 10
-        b = 7
-        self.init(a, b)
+        self.calc.a = 10
+        self.calc.b = 7
+
         expected = 3
 
         actual = self.calc.sub()
 
         self.assertEqual(expected, actual)
         self.assertEqual(1, self.calc.count)
-        self.destroy()
+
 
     def test_mul(self):
         # arrange
-        a = 8
-        b = 7
-        self.init(a, b)
+        self.calc.a = 8
+        self.calc.b = 7
+
         expected = 56
 
         # action
@@ -54,13 +62,13 @@ class TestCalculator(unittest.TestCase):
         # assert
         self.assertEqual(expected, actual)
         self.assertEqual(1, self.calc.count)
-        self.destroy()
+
 
     def test_div(self):
         # arrange
-        a = 18
-        b = 7
-        self.init(a, b)
+        self.calc.a = 18
+        self.calc.b = 7
+
         expected = 2
 
         # action
@@ -69,7 +77,7 @@ class TestCalculator(unittest.TestCase):
         # assert
         self.assertEqual(expected, actual)
         self.assertEqual(1, self.calc.count)
-        self.destroy()
+
 
 
 if __name__ == "__main__":
